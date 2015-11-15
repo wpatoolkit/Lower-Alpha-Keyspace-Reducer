@@ -131,6 +131,9 @@ int main(int argc, char *argv[]) {
   for (int slot2=0;slot2<possible_chars_length;possible_chars_freq[slot2++]--) { // SLOT 2
    alpha_chars[1] = possible_chars[slot2];
    ++possible_chars_freq[slot2];
+
+/*
+   // Unverified
    if (slot2==slot1) { continue; } // character 2 is not equal to character 1
    //if (slot2==(slot1+1)) { continue; } // character 2 is not +1 to character 1 (disproven - uvsamser, jkxgxtmq)
    if (slot2==(slot1+2)) { continue; } // character 2 is not +2 to character 1
@@ -142,6 +145,7 @@ int main(int argc, char *argv[]) {
    //if (slot2==(slot1-3)) { continue; } // character 2 is not -3 to character 1 (disproven - urueuqky)
    if (slot2==(slot1-4)) { continue; } // character 2 is not -4 to character 1
    //if (slot2==(slot1-5)) { continue; } // character 2 is not -5 to character 1 (disproven)
+*/
 
    for (int slot3=0;slot3<possible_chars_length;possible_chars_freq[slot3++]--) { // SLOT 3
     alpha_chars[2] = possible_chars[slot3];
@@ -149,6 +153,9 @@ int main(int argc, char *argv[]) {
     if ((slot2==(slot1+1))&&(slot3==(slot2+1))) { continue; }       // no 3 characters in a row can be sequential
     if ((slot2==(slot1-1))&&(slot3==(slot2-1))) { continue; }       // no 3 characters in a row can be reverse sequential
     if ((slot3==slot2)&&(slot2==slot1)) { continue; }               // no 3 characters in a row can be identical
+
+/*
+    // Unverified
     //if (slot3==slot2) { continue; } // character 3 is not equal to character 2 (disproven - gttrqjte)
     //if (slot3==(slot2+1)) { continue; } // character 3 is not +1 to character 2 (disproven)
     if (slot3==(slot2+2)) { continue; } // character 3 is not +2 to character 2
@@ -165,6 +172,7 @@ int main(int argc, char *argv[]) {
     if (slot3==(slot1+2)) { continue; } // character 3 is not +2 to character 1
     if (slot3==(slot1-1)) { continue; } // character 3 is not -1 to character 1
     //if (slot3==(slot1-2)) { continue; } // character 3 is not -2 to character 1 (disproven)
+*/
 
     for (int slot4=0;slot4<possible_chars_length;possible_chars_freq[slot4++]--) { // SLOT 4
      alpha_chars[3] = possible_chars[slot4];
@@ -181,6 +189,7 @@ int main(int argc, char *argv[]) {
       if ((slot4==(slot3+1))&&(slot5==(slot4+1))) { continue; }     // no 3 characters in a row can be sequential
       if ((slot4==(slot3-1))&&(slot5==(slot4-1))) { continue; }     // no 3 characters in a row can be reverse sequential
       if ((slot5==slot4)&&(slot4==slot3)) { continue; }             // no 3 characters in a row can be identical
+
       if (slot5==slot4) { continue; } // character 5 is not equal to character 4
       //if (slot5==slot1) { continue; } // character 5 is not equal to character 1 (disproven - urueuqky)
 
