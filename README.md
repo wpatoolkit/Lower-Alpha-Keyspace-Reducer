@@ -3,18 +3,18 @@ This is a small program written in C++ that will output 8-length lower alpha com
 skipping over certain combinations it believes to be invalid.
 
 Only combinations which meet these criteria will be printed:<br>
-&nbsp;&bull; each character cannot appear more than 4 times<br>
+&nbsp;&bull; each character cannot appear more than 3 times<br>
 &nbsp;&bull; no 3 characters in a row can be identical<br>
 &nbsp;&bull; no 3 characters in a row can be sequential (abc)<br>
 &nbsp;&bull; no 3 characters in a row can be reverse sequential (cba)<br>
 &nbsp;&bull; character 5 is not equal to character 4<br>
+&nbsp;&bull; characters 1 and 2 and 4 are not identical<br>
 &nbsp;&bull; characters 1 and 3 and 4 are not identical<br>
 &nbsp;&bull; characters 1 and 3, and 2 and 4 are not identical<br>
-&nbsp;&bull; characters 2, 3 and 8 cannot be identical<br>
 
 Without any rules applied there are 110,075,314,176 (24^8) possible combinations in the keyspace.
 
-Applying these rules brings it down to 38,469,126,600 combinations (or about 35% of the keyspace).
+Applying these rules brings it down to 47,210,528,543 combinations (or about 43% of the keyspace).
 
 To compile on Windows (requires the <a href="http://www.microsoft.com/en-us/download/details.aspx?id=8279">Windows 7 SDK</a>):<br>
 `cl /EHsc la.cpp`
