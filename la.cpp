@@ -117,11 +117,54 @@ int main(int argc, char *argv[]) {
  // Number of combinations
  // ---------------------------------------------------
  //  # of combos (8-length) = 110,075,314,176 (24^8)
- //  # of combos (8-length) with rules = 38,469,126,600 (35%)
- //  # of combos (8-length) with rules (8 uniques): 13,432,589,840 (12.2%)
- //  # of combos (8-length) with rules (7 uniques): 17,418,973,932 (15.8%)
- //  # of combos (8-length) with rules (6 uniques): 6,705,354,574 (6%)
- //  # of combos (8-length) with rules (5 uniques): 878,748,085 (0.8%)
+ //  # of combos (8-length) with rules = 47,210,528,543 (43%)
+ //  # of combos (8-length) with rules (8 uniques): 12,642,994,978 (11.5%)
+ //  # of combos (8-length) with rules (7 uniques): 21,433,514,842 (19.5%)
+ //  # of combos (8-length) with rules (6 uniques): 11,122,891,428 (10.1%)
+ //  # of combos (8-length) with rules (5 uniques): 2,011,127,295 (1.8%)
+
+ // try known list first
+ std::cout << "bfzswnjk" << std::endl;
+ std::cout << "bsadcdsx" << std::endl;
+ std::cout << "cbjfjuwv" << std::endl;
+ std::cout << "chxdhgyn" << std::endl;
+ std::cout << "eeaaqwmn" << std::endl;
+ std::cout << "epxcyqtt" << std::endl;
+ std::cout << "ettfgpxy" << std::endl;
+ std::cout << "gnazggfd" << std::endl;
+ std::cout << "gpvakyhk" << std::endl;
+ std::cout << "gttrqjte" << std::endl;
+ std::cout << "hemvlpng" << std::endl;
+ std::cout << "hhrgjubh" << std::endl;
+ std::cout << "hsvtpnmk" << std::endl;
+ std::cout << "jkxgxtmq" << std::endl;
+ std::cout << "kexnynex" << std::endl;
+ std::cout << "kgwbjfcj" << std::endl;
+ std::cout << "krccvrhs" << std::endl;
+ std::cout << "kyyfrpey" << std::endl;
+ std::cout << "lpzwnwxj" << std::endl;
+ std::cout << "mqdnxmdk" << std::endl;
+ std::cout << "nljkdrml" << std::endl;
+ std::cout << "nlvuzzyk" << std::endl;
+ std::cout << "nrjzxdpy" << std::endl;
+ std::cout << "puphmpnp" << std::endl;
+ std::cout << "qfvqhuff" << std::endl;
+ std::cout << "rtfnlzsp" << std::endl;
+ std::cout << "sunhxvsq" << std::endl;
+ std::cout << "taytdkjv" << std::endl;
+ std::cout << "tcrbxyke" << std::endl;
+ std::cout << "tgztrcvc" << std::endl;
+ std::cout << "urueuqky" << std::endl;
+ std::cout << "uvsamser" << std::endl;
+ std::cout << "vgakargd" << std::endl;
+ std::cout << "vtbnteyu" << std::endl;
+ std::cout << "wqkgmfwy" << std::endl;
+ std::cout << "wvnfpnxl" << std::endl;
+ std::cout << "xbgzykhu" << std::endl;
+ std::cout << "ymvlzjbk" << std::endl;
+ std::cout << "zaxhvnbg" << std::endl;
+ std::cout << "zbknxudp" << std::endl;
+ std::cout << "zyvrhuzj" << std::endl;
 
  for (int slot1=slot1_start_at;slot1<slot1_stop_at;slot1++) { // SLOT 1
   possible_chars_freq[0]=possible_chars_freq[1]=possible_chars_freq[2]=possible_chars_freq[3]=possible_chars_freq[4]=possible_chars_freq[5]=possible_chars_freq[6]=possible_chars_freq[7]=possible_chars_freq[8]=possible_chars_freq[9]=possible_chars_freq[10]=possible_chars_freq[11]=possible_chars_freq[12]=possible_chars_freq[13]=possible_chars_freq[14]=possible_chars_freq[15]=possible_chars_freq[16]=possible_chars_freq[17]=possible_chars_freq[18]=possible_chars_freq[19]=possible_chars_freq[20]=possible_chars_freq[21]=possible_chars_freq[22]=possible_chars_freq[23]=0;
@@ -132,9 +175,7 @@ int main(int argc, char *argv[]) {
    alpha_chars[1] = possible_chars[slot2];
    ++possible_chars_freq[slot2];
 
-/*
-   // Unverified
-   if (slot2==slot1) { continue; } // character 2 is not equal to character 1
+   //if (slot2==slot1) { continue; } // character 2 is not equal to character 1 (disproven - eeaaqwmn)
    //if (slot2==(slot1+1)) { continue; } // character 2 is not +1 to character 1 (disproven - uvsamser, jkxgxtmq)
    if (slot2==(slot1+2)) { continue; } // character 2 is not +2 to character 1
    if (slot2==(slot1+3)) { continue; } // character 2 is not +3 to character 1
@@ -145,7 +186,6 @@ int main(int argc, char *argv[]) {
    //if (slot2==(slot1-3)) { continue; } // character 2 is not -3 to character 1 (disproven - urueuqky)
    if (slot2==(slot1-4)) { continue; } // character 2 is not -4 to character 1
    //if (slot2==(slot1-5)) { continue; } // character 2 is not -5 to character 1 (disproven)
-*/
 
    for (int slot3=0;slot3<possible_chars_length;possible_chars_freq[slot3++]--) { // SLOT 3
     alpha_chars[2] = possible_chars[slot3];
@@ -154,8 +194,6 @@ int main(int argc, char *argv[]) {
     if ((slot2==(slot1-1))&&(slot3==(slot2-1))) { continue; }       // no 3 characters in a row can be reverse sequential
     if ((slot3==slot2)&&(slot2==slot1)) { continue; }               // no 3 characters in a row can be identical
 
-/*
-    // Unverified
     //if (slot3==slot2) { continue; } // character 3 is not equal to character 2 (disproven - gttrqjte)
     //if (slot3==(slot2+1)) { continue; } // character 3 is not +1 to character 2 (disproven)
     if (slot3==(slot2+2)) { continue; } // character 3 is not +2 to character 2
@@ -170,14 +208,20 @@ int main(int argc, char *argv[]) {
     //if (slot3==slot1) { continue; } // character 3 is not equal to character 1 (disproven - urueuqky)
     //if (slot3==(slot1+1)) { continue; } // character 3 is not +1 to character 1 (disproven)
     if (slot3==(slot1+2)) { continue; } // character 3 is not +2 to character 1
+    if (slot3==(slot1+3)) { continue; } // character 3 is not +3 to character 1
+    if (slot3==(slot1+4)) { continue; } // character 3 is not +4 to character 1
+    if (slot3==(slot1+5)) { continue; } // character 3 is not +5 to character 1
     if (slot3==(slot1-1)) { continue; } // character 3 is not -1 to character 1
     //if (slot3==(slot1-2)) { continue; } // character 3 is not -2 to character 1 (disproven)
-*/
+    if (slot3==(slot1-3)) { continue; } // character 3 is not -3 to character 1
+    if (slot3==(slot1-4)) { continue; } // character 3 is not -4 to character 1
+    if (slot3==(slot1-5)) { continue; } // character 3 is not -5 to character 1
 
     for (int slot4=0;slot4<possible_chars_length;possible_chars_freq[slot4++]--) { // SLOT 4
      alpha_chars[3] = possible_chars[slot4];
-     if (++possible_chars_freq[slot4] > 4) { continue; }            // each character cannot appear more than 4 times
+     if (++possible_chars_freq[slot4] > 3) { continue; }            // each character cannot appear more than 3 times
      if ((slot1==slot3)&&(slot2==slot4)) { continue; }              // characters 1 and 3, and 2 and 4 are not identical
+     if ((slot1==slot2)&&(slot2==slot4)) { continue; }              // characters 1 and 2 and 4 are not identical
      if ((slot1==slot3)&&(slot3==slot4)) { continue; }              // characters 1 and 3 and 4 are not identical
      if ((slot3==(slot2+1))&&(slot4==(slot3+1))) { continue; }      // no 3 characters in a row can be sequential
      if ((slot3==(slot2-1))&&(slot4==(slot3-1))) { continue; }      // no 3 characters in a row can be reverse sequential
@@ -185,7 +229,7 @@ int main(int argc, char *argv[]) {
 
      for (int slot5=0;slot5<possible_chars_length;possible_chars_freq[slot5++]--) { // SLOT 5
       alpha_chars[4] = possible_chars[slot5];
-      if (++possible_chars_freq[slot5] > 4) { continue; }           // each character cannot appear more than 4 times
+      if (++possible_chars_freq[slot5] > 3) { continue; }           // each character cannot appear more than 3 times
       if ((slot4==(slot3+1))&&(slot5==(slot4+1))) { continue; }     // no 3 characters in a row can be sequential
       if ((slot4==(slot3-1))&&(slot5==(slot4-1))) { continue; }     // no 3 characters in a row can be reverse sequential
       if ((slot5==slot4)&&(slot4==slot3)) { continue; }             // no 3 characters in a row can be identical
@@ -195,30 +239,30 @@ int main(int argc, char *argv[]) {
 
       for (int slot6=0;slot6<possible_chars_length;possible_chars_freq[slot6++]--) { // SLOT 6
        alpha_chars[5] = possible_chars[slot6];
-       if (++possible_chars_freq[slot6] > 4) { continue; }          // each character cannot appear more than 4 times
-       //if ((slot3==slot5)&&(slot4==slot6)) { continue; }            // characters 3 and 5, and 4 and 6 are not identical
+       if (++possible_chars_freq[slot6] > 3) { continue; }          // each character cannot appear more than 3 times
+       if ((slot3==slot5)&&(slot4==slot6)) { continue; }            // characters 3 and 5, and 4 and 6 are not identical
        if ((slot5==(slot4+1))&&(slot6==(slot5+1))) { continue; }    // no 3 characters in a row can be sequential
        if ((slot5==(slot4-1))&&(slot6==(slot5-1))) { continue; }    // no 3 characters in a row can be reverse sequential
        if ((slot6==slot5)&&(slot5==slot4)) { continue; }            // no 3 characters in a row can be identical
 
        for (int slot7=0;slot7<possible_chars_length;possible_chars_freq[slot7++]--) { // SLOT 7
         alpha_chars[6] = possible_chars[slot7];
-        if (++possible_chars_freq[slot7] > 4) { continue; }         // each character cannot appear more than 4 times
+        if (++possible_chars_freq[slot7] > 3) { continue; }         // each character cannot appear more than 3 times
         if ((slot6==(slot5+1))&&(slot7==(slot6+1))) { continue; }   // no 3 characters in a row can be sequential
         if ((slot6==(slot5-1))&&(slot7==(slot6-1))) { continue; }   // no 3 characters in a row can be reverse sequential
         if ((slot7==slot6)&&(slot6==slot5)) { continue; }           // no 3 characters in a row can be identical
 
         for (int slot8=0;slot8<possible_chars_length;possible_chars_freq[slot8++]--) { // SLOT 8
          alpha_chars[7] = possible_chars[slot8];
-         if (++possible_chars_freq[slot8] > 4) { continue; }        // each character cannot appear more than 4 times
+         if (++possible_chars_freq[slot8] > 3) { continue; }        // each character cannot appear more than 3 times
          if ((slot7==(slot6+1))&&(slot8==(slot7+1))) { continue; }  // no 3 characters in a row can be sequential
          if ((slot7==(slot6-1))&&(slot8==(slot7-1))) { continue; }  // no 3 characters in a row can be reverse sequential
          if ((slot8==slot7)&&(slot7==slot6)) { continue; }          // no 3 characters in a row can be identical
-         if ((slot2==slot3)&&(slot3==slot8)) { continue; } // characters 2, 3 and 8 cannot be identical
+         //if ((slot2==slot3)&&(slot3==slot8)) { continue; } // characters 2, 3 and 8 cannot be identical
          //if (slot8==slot6) { continue; } // character 8 is not equal to character 6 (disproven - puphmpnp)
          unique_count = ((possible_chars_freq[0]!=0)?1:0) + ((possible_chars_freq[1]!=0)?1:0) + ((possible_chars_freq[2]!=0)?1:0) + ((possible_chars_freq[3]!=0)?1:0) + ((possible_chars_freq[4]!=0)?1:0) + ((possible_chars_freq[5]!=0)?1:0) + ((possible_chars_freq[6]!=0)?1:0) + ((possible_chars_freq[7]!=0)?1:0) + ((possible_chars_freq[8]!=0)?1:0) + ((possible_chars_freq[9]!=0)?1:0) + ((possible_chars_freq[10]!=0)?1:0) + ((possible_chars_freq[11]!=0)?1:0) + ((possible_chars_freq[12]!=0)?1:0) + ((possible_chars_freq[13]!=0)?1:0) + ((possible_chars_freq[14]!=0)?1:0) + ((possible_chars_freq[15]!=0)?1:0) + ((possible_chars_freq[16]!=0)?1:0) + ((possible_chars_freq[17]!=0)?1:0) + ((possible_chars_freq[18]!=0)?1:0) + ((possible_chars_freq[19]!=0)?1:0) + ((possible_chars_freq[20]!=0)?1:0) + ((possible_chars_freq[21]!=0)?1:0) + ((possible_chars_freq[22]!=0)?1:0) + ((possible_chars_freq[23]!=0)?1:0);
-/*
-         ++counter;
+
+         //++counter;
          if (unique_count == 8) { ++uniques_counter[7]; }
          if (unique_count == 7) { ++uniques_counter[6]; }
          if (unique_count == 6) { ++uniques_counter[5]; }
@@ -227,7 +271,7 @@ int main(int argc, char *argv[]) {
          if (unique_count == 3) { ++uniques_counter[2]; }
          if (unique_count == 2) { ++uniques_counter[1]; }
          if (unique_count == 1) { ++uniques_counter[0]; }
-*/
+
          if (((desired_uniques==0)&&(min_uniques==0)) || ((min_uniques>0)&&(unique_count>=min_uniques)) || ((desired_uniques>0)&&(desired_uniques==unique_count))) {
           if (unique_count >= 5) {
            ++counter;
