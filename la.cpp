@@ -1,4 +1,4 @@
-#ifdef __linux__
+#if defined(__linux__) || defined(__CYGWIN__) || defined(__MINGW32__) || defined(__GNUC__) || defined(__BORLANDC__)
 #include <strings.h>
 #define stricmp strcasecmp
 #define strnicmp strncasecmp
@@ -6,8 +6,11 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cstdio>
 #include <time.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 int main(int argc, char *argv[]) {
  srand(time(NULL));
  bool output_random = false;
@@ -78,7 +81,9 @@ int main(int argc, char *argv[]) {
  if ((stop_at !=0) && (stop_at <= start_at)) { std::cout << "ERROR: stop must be greater than start" << std::endl; return 1; }
 
  const int MAX_LENGTH = 8;
- char alpha_chars[MAX_LENGTH];
+ char alpha_chars[MAX_LENGTH+2];
+ alpha_chars[MAX_LENGTH] = '\n';
+ alpha_chars[MAX_LENGTH+1] = '\0';
  for (int i=0;i<MAX_LENGTH;++i) { alpha_chars[i] = 'a'; }
  char possible_chars[24] = {'a','b','c','d','e','f','g','h','j','k','l','m','n','p','q','r','s','t','u','v','w','x','y','z'};
  int possible_chars_freq[24] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -206,6 +211,7 @@ int main(int argc, char *argv[]) {
  std::cout << "zbulacrj" << std::endl;
  std::cout << "zfysgfse" << std::endl;
  std::cout << "zyvrhuzj" << std::endl;
+ std::cout << "vhfdxlmt" << std::endl;
 
  for (int slot1=slot1_start_at;slot1<slot1_stop_at;slot1++) { // SLOT 1
   possible_chars_freq[0]=possible_chars_freq[1]=possible_chars_freq[2]=possible_chars_freq[3]=possible_chars_freq[4]=possible_chars_freq[5]=possible_chars_freq[6]=possible_chars_freq[7]=possible_chars_freq[8]=possible_chars_freq[9]=possible_chars_freq[10]=possible_chars_freq[11]=possible_chars_freq[12]=possible_chars_freq[13]=possible_chars_freq[14]=possible_chars_freq[15]=possible_chars_freq[16]=possible_chars_freq[17]=possible_chars_freq[18]=possible_chars_freq[19]=possible_chars_freq[20]=possible_chars_freq[21]=possible_chars_freq[22]=possible_chars_freq[23]=0;
@@ -304,21 +310,33 @@ int main(int argc, char *argv[]) {
          unique_count = ((possible_chars_freq[0]!=0)?1:0) + ((possible_chars_freq[1]!=0)?1:0) + ((possible_chars_freq[2]!=0)?1:0) + ((possible_chars_freq[3]!=0)?1:0) + ((possible_chars_freq[4]!=0)?1:0) + ((possible_chars_freq[5]!=0)?1:0) + ((possible_chars_freq[6]!=0)?1:0) + ((possible_chars_freq[7]!=0)?1:0) + ((possible_chars_freq[8]!=0)?1:0) + ((possible_chars_freq[9]!=0)?1:0) + ((possible_chars_freq[10]!=0)?1:0) + ((possible_chars_freq[11]!=0)?1:0) + ((possible_chars_freq[12]!=0)?1:0) + ((possible_chars_freq[13]!=0)?1:0) + ((possible_chars_freq[14]!=0)?1:0) + ((possible_chars_freq[15]!=0)?1:0) + ((possible_chars_freq[16]!=0)?1:0) + ((possible_chars_freq[17]!=0)?1:0) + ((possible_chars_freq[18]!=0)?1:0) + ((possible_chars_freq[19]!=0)?1:0) + ((possible_chars_freq[20]!=0)?1:0) + ((possible_chars_freq[21]!=0)?1:0) + ((possible_chars_freq[22]!=0)?1:0) + ((possible_chars_freq[23]!=0)?1:0);
 
          //++counter;
-         if (unique_count == 8) { ++uniques_counter[7]; }
-         if (unique_count == 7) { ++uniques_counter[6]; }
-         if (unique_count == 6) { ++uniques_counter[5]; }
-         if (unique_count == 5) { ++uniques_counter[4]; }
-         if (unique_count == 4) { ++uniques_counter[3]; }
-         if (unique_count == 3) { ++uniques_counter[2]; }
-         if (unique_count == 2) { ++uniques_counter[1]; }
-         if (unique_count == 1) { ++uniques_counter[0]; }
+         //if (unique_count == 8) { ++uniques_counter[7]; }
+         //if (unique_count == 7) { ++uniques_counter[6]; }
+         //if (unique_count == 6) { ++uniques_counter[5]; }
+         //if (unique_count == 5) { ++uniques_counter[4]; }
+         //if (unique_count == 4) { ++uniques_counter[3]; }
+         //if (unique_count == 3) { ++uniques_counter[2]; }
+         //if (unique_count == 2) { ++uniques_counter[1]; }
+         //if (unique_count == 1) { ++uniques_counter[0]; }
 
          if (((desired_uniques==0)&&(min_uniques==0)) || ((min_uniques>0)&&(unique_count>=min_uniques)) || ((desired_uniques>0)&&(desired_uniques==unique_count))) {
           if (unique_count >= 5) {
            ++counter;
            if (counter >= start_at) {
             if ((stop_at > 0) && (counter >= stop_at)) { return 0; }
-            std::cout << alpha_chars[0] << alpha_chars[1] << alpha_chars[2] << alpha_chars[3] << alpha_chars[4] << alpha_chars[5] << alpha_chars[6] << alpha_chars[7] << std::endl;
+
+              // METHOD 1 - 60,500 H/s
+              //puts(alpha_chars);
+
+              // METHOD 2 - 60,500 H/s
+              //printf("%s",alpha_chars);
+
+              // METHOD 3 - 60,400 H/s
+              //std::cout << alpha_chars;
+
+              // METHOD 4 - 65,700 H/s
+              fwrite(&alpha_chars, 1, 9, stdout);
+
            }
           }
           //if ((alpha_chars[0]=='q') && (alpha_chars[1]=='y') && (alpha_chars[2]=='r') && (alpha_chars[3]=='x') && (alpha_chars[4]=='a') && (alpha_chars[5]=='p') && (alpha_chars[6]=='w') && (alpha_chars[7]=='t')) { std::cout << "FOUND" << std::endl; return 0; }
